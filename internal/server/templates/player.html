@@ -1,0 +1,38 @@
+{{ template "header" . }}
+{{ if .U}}
+<h1>Hi, {{.U.Email}}</h1>
+{{end}}
+<h1> Please select a movie to add</h1>
+
+{{ if .M}}
+<div class="flex-container">
+    {{range $i , $M := .M}}
+       <div>
+        <img src="{{index $M.I}}" alt="{{index $M.T}}"></img><br>
+        <label>{{index $M.T}}</label><br>
+        <iframe src="{{index $M.Y}}" style="width:100%;height:20em;"></iframe><br>
+        <div style="visibility: hidden;">{{index $M.ID}}</div>
+        </div>
+    {{end}}
+    </div>
+{{else}}
+dfsfds
+{{end}}
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+</style>
+
+{{ template "footer" . }}

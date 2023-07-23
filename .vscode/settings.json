@@ -1,0 +1,11 @@
+{
+    "DockerRun.DisableAutoGenerateConfig": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:securityexample-main}/internal/db/database.db",
+            "name": "news"
+        }
+    ]
+}

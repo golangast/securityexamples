@@ -1,0 +1,63 @@
+{{ template "header" . }}
+{{ if .U}}
+<h1>Hi, {{.U.Email}}</h1>
+{{end}}
+<h1> Please select a movie to add</h1>
+
+{{ if .M}}
+{{ if .U}}
+
+<div class="flex-container">
+    {{range $i , $M := .M}}
+       <div>
+       <a style="text-decoration:none;" href="/player/{{index $M.ID}}/323/">
+        <img src="{{index $M.Image}}" alt="{{index $M.Title}}"></img><br>
+        <label>{{index $M.Title}}</label><br>
+        <label>{{index $M.Year}}</label>
+        <div style="visibility: hidden;">{{index $M.ID}}</div>
+        </a>
+        </div>
+        {{end}}
+    {{end}}
+    </div>
+{{else}}
+
+{{ if .U.SiteToken}}
+<h2>Please add a movie</h2>
+<form action="/addmovies" method="POST" enctype="multipart/form-data">
+ <label for="image">Email:</label><br>
+  <input type="text" id="email" name="email" value="some@gasd"><br>
+  <label for="image">Image:</label><br>
+  <input type="file" name="file"><br>
+    <label for="image">Video:</label><br>
+    <input type="file" name="video"><br>
+  <label for="title">Title:</label><br>
+  <input type="text" id="title" name="title" value="title"><br>
+    <label for="year">Year:</label><br>
+  <input type="text" id="year" name="year" value="year"><br>
+  <br>
+   <input style="visibility:hidden;" type="text" id="sitetoken" name="sitetoken" value="{{.U.SiteToken}}">
+  <input type="submit" value="Submit">
+</form> 
+{{end}}
+
+{{end}}
+
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+</style>
+
+{{ template "footer" . }}

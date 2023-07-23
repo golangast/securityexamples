@@ -1,0 +1,4 @@
+#Permissions
+-admin
+-editor
+-viewer
